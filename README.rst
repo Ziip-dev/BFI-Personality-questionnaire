@@ -2,7 +2,7 @@ Big Five Inventory (French version) - Python Web App
 ====================================================
 
 
-This python package is an implementation of the [**Big Five Inventory questionnaire**](https://en.wikipedia.org/wiki/Big_Five_personality_traits) in a python web app.
+This python package is an implementation of the `**Big Five Inventory questionnaire**<https://en.wikipedia.org/wiki/Big_Five_personality_traits>`_ in a python web app.
 
 
 This psychological trait theory identifies *five describing factors* for personality:

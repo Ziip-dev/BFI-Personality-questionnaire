@@ -1,11 +1,12 @@
 [tool.poetry]
 name = "personality-bfi"
 version = "0.1.0"
-description = ""
+description = "Big Five Inventory Personality test (French version) in a python web application"
 authors = ["Paul Dulaud <paul.dulaud@utt.fr>"]
 
 [tool.poetry.dependencies]
 python = "^3.7"
+Flask = "^1.1.2"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
