@@ -2,7 +2,11 @@
 name = "personality-bfi"
 version = "0.1.0"
 description = "Big Five Inventory Personality test (French version) in a python web application"
+license = ""
 authors = ["Paul Dulaud <paul.dulaud@utt.fr>"]
+readme = "README.rst"
+homepage = "https://gitlab.com/phd-connected-objects-for-proactive-health-management/personality/big-five-inventory-python-web-app"
+repository = "https://gitlab.com/phd-connected-objects-for-proactive-health-management/personality/big-five-inventory-python-web-app"
 
 [tool.poetry.dependencies]
 python = "^3.7"
