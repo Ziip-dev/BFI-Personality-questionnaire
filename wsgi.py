@@ -1,3 +1,5 @@
+"""Application entry point."""
+
 from personality_bfi import create_app
 
 

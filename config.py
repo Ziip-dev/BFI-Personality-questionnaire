@@ -12,7 +12,7 @@
 # CSRF_SESSION_KEY = "secret"
 
 
-"""Flask configuration."""
+"""Class-based Flask app configuration."""
 from os import environ, path
 from dotenv import load_dotenv
 
@@ -26,6 +26,9 @@ class Config:
 
     SECRET_KEY = environ.get("SECRET_KEY")
     SESSION_COOKIE_NAME = environ.get("SESSION_COOKIE_NAME")
+    FLASK_APP = "wsgi.py"
+
+    # Static Assets
     STATIC_FOLDER = "static"
     TEMPLATES_FOLDER = "templates"
 
