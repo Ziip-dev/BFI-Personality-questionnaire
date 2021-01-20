@@ -10,7 +10,7 @@ from flask import Flask
 
 
 def create_app():
-    """Initialize the core application."""
+    """Initialize core application."""
     app = Flask(__name__, instance_relative_config=False)
     app.config.from_object("config.DevConfig")
 
@@ -19,8 +19,8 @@ def create_app():
 
     with app.app_context():
         # Import parts of the application
-        from .home import routes
-        from .bfi_form import routes
+        from .home import home
+        from .bfi_form import form
 
         # Register Blueprints
         app.register_blueprint(home.home_bp)
