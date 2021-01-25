@@ -13,6 +13,7 @@
 
 
 """Class-based Flask app configuration."""
+
 from os import environ, path
 from dotenv import load_dotenv
 
@@ -31,6 +32,11 @@ class Config:
     # Static Assets
     STATIC_FOLDER = "static"
     TEMPLATES_FOLDER = "templates"
+
+    # Flask-assets variables
+    LESS_BIN = "/usr/bin/lessc"
+    ASSETS_DEBUG = False
+    ASSETS_AUTO_BUILD = True
 
 
 class ProdConfig(Config):
