@@ -4,9 +4,10 @@ __version__ = "0.1.0"
 import os
 from flask import Flask
 from flask_assets import Environment
-from .assets import compile_assets
 
-assets = Environment()
+# from .assets import compile_assets
+
+# assets = Environment()
 
 # Globally accessible libraries
 # wtf = WTForm()
