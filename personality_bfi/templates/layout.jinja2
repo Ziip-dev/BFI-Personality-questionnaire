@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  {% include 'meta.jinja2' %}
+  {% block pagestyles %}{% endblock %}
+  <!-- <link rel="stylesheet" href="{{ url_for('static', filename='dist/css/styles.css' }}"> -->
+</head>
+
+<body class="{{template}}">
+
+  {% block content %}{% endblock %}
+
+  <!-- Scripts -->
+  <!-- <script src="{{ url_for('static', filename='dist/js/main.min.js') }}"></script> -->
+
+</body>
+
+</html>
