@@ -3,7 +3,8 @@ __version__ = "0.1.0"
 """Initialize app."""
 import os
 from flask import Flask
-from flask_assets import Environment
+
+# from flask_assets import Environment
 
 # from .assets import compile_assets
 
@@ -23,11 +24,11 @@ def create_app():
 
     with app.app_context():
         # Import parts of the application
-        from .home import home
-        from .bfi_form import form
+        # from .home import home
+        from .bfi_questionnaire import questionnaire_routes
 
         # Register Blueprints
-        app.register_blueprint(home.home_bp)
-        app.register_blueprint(bfi_form.form_bp)
+        # app.register_blueprint(home.home_bp)
+        app.register_blueprint(questionnaire_routes.questionnaire_bp)
 
         return app
