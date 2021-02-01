@@ -22,11 +22,12 @@ basedir = path.abspath(path.dirname(__file__))
 load_dotenv(path.join(basedir, ".env"))
 
 
-class Config:
+class Config(object):
     """Base config."""
 
     SECRET_KEY = environ.get("SECRET_KEY")
-    SESSION_COOKIE_NAME = environ.get("SESSION_COOKIE_NAME")
+    FLASK_ENV = environ.get("FLASK_ENV")
+    # SESSION_COOKIE_NAME = environ.get("SESSION_COOKIE_NAME")
     FLASK_APP = "wsgi.py"
 
     # Static Assets
@@ -40,14 +41,11 @@ class Config:
 
 
 class ProdConfig(Config):
-    FLASK_ENV = "production"
     DEBUG = False
     TESTING = False
     # SERVER_NAME = If you intend your app to be reachable on a custom domain, we specify the app's domain name here.
 
 
 class DevConfig(Config):
-    FLASK_ENV = "development"
     DEBUG = True
     TESTING = True
-    # SERVER_NAME = If you intend your app to be reachable on a custom domain, we specify the app's domain name here.

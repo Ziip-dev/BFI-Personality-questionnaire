@@ -17,6 +17,7 @@ Flask-Assets = "^2.0"
 lesscpy = "^0.14.0"
 cssmin = "^0.2.0"
 jsmin = "^2.2.2"
+python-dotenv = "^0.15.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
