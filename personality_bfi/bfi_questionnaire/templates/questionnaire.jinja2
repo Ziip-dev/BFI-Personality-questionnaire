@@ -1,0 +1,30 @@
+{% extends "layout.jinja2" %}
+
+<!-- block pagestyles %} -->
+<!-- <link href"{{ url_for('static', filename='dist/css/style.css') }}" rel="stylesheet" type="text/css"> -->
+<!-- endblock %} -->
+
+{% block content %}
+<h1>Question {{question_number}}</h1>
+
+Je me vois comme quelqu'un qui... {{ question }}
+<br>
+<br>
+
+<form action="{{ url_for('questionnaire_bp.bfi_questionnaire', question_number=question_number) }}" method="post">
+  <input type="radio" name="answer", value="1"> 1 - désapprouve fortement<br>
+  <input type="radio" name="answer", value="2"> 2 - désapprouve un peu<br>
+  <input type="radio" name="answer", value="3"> 3 - n'approuve ni ne désapprouve<br>
+  <input type="radio" name="answer", value="4"> 4 - approuve un peu<br>
+  <input type="radio" name="answer", value="5"> 5 - approuve fortement<br>
+
+  <div>
+    <br>
+    {% if question_number != 45 %}
+      <input type="submit" name="next", value="Question suivante">
+    {% else %}
+      <input type="submit" name="next", value="Terminer le questionnaire"> 
+    {% endif %}
+  </div>
+
+{% endblock %}
