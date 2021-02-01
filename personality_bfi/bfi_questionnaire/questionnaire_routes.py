@@ -2,6 +2,7 @@
 
 from flask import Blueprint, render_template, redirect, request, url_for
 from flask import current_app as app
+from .questionnaire import BfiQuestionnaire
 import pandas as pd
 
 
@@ -57,7 +58,7 @@ def bfi_instructions():
         + "<br><br>"
         + answers_allowed
         + "<br><br>"
-        + "<a href={{ url_for('questionnaire_bp.bfi_questionnaire') }}>C'est parti !"
+        + "<a href={{ url_for('questionnaire_bp.bfi_questionnaire', question_number=1) }}>C'est parti !"
     )
 
 
@@ -65,9 +66,13 @@ def bfi_instructions():
     "/bfi/questionnaire/<int:question_number>/", methods=["GET", "POST"]
 )
 def bfi_questionnaire(question_number):
+    title = "Big Five Inventory questionnaire"
 
     # GET (new question)
     if request.method == "GET":
+        form = BfiQuestionnaire()
+
+        # in global variable loaded at instructions page to avoid readind csv file every time
         df_questionnaire = pd.read_csv(
             "personality_bfi/bfi_questionnaire/static/data/bfi-questions.csv",
             index_col=0,
@@ -77,9 +82,10 @@ def bfi_questionnaire(question_number):
             question = df_questionnaire.Questions[question_number]
             return render_template(
                 "questionnaire.jinja2",
-                title="Big Five Inventory questionnaire",
+                title=title,
                 question_number=question_number,
                 question=question,
+                form=form,
             )
 
         except KeyError:
@@ -88,7 +94,7 @@ def bfi_questionnaire(question_number):
             return "<br> Cette question n'existe pas..."
 
     # POST (retrieve answer and redirect to next quetion) !
-    elif request.method == "POST":
+    if form.validate_on_submit():
         # retrieve user answer
         answer = request.form["answer"]
         print("User answer is " + answer)
