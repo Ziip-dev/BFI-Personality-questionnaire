@@ -14,16 +14,12 @@ Je me vois comme quelqu'un qui... {{ question }}
 <form method="post">
   {{ form.hidden_tag() }}
 
-
-  {% for subfield in form.radio %}
-  <tr>
-    <td>{{ subfield }}</td>
-    <td>{{ subfield.label }}</td>
-  </tr>
+  {% for subfield in form.answer %}
+    {{ subfield }} {{ subfield.label }} <br>
   {% endfor %}
 
-
-  {{ form.submit}}
+  <br>
+  {{ form.submit }}
 </form>
 
 {% endblock %}
