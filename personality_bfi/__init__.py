@@ -24,11 +24,9 @@ def create_app():
 
     with app.app_context():
         # Import parts of the application
-        # from .home import home
         from .bfi_questionnaire import questionnaire_routes
 
         # Register Blueprints
-        # app.register_blueprint(home.home_bp)
         app.register_blueprint(questionnaire_routes.questionnaire_bp)
 
         return app
