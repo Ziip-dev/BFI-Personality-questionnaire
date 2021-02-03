@@ -1,6 +1,6 @@
 """BFI questionnaire routes"""
 
-from flask import Blueprint, render_template, redirect, request, url_for
+from flask import Blueprint, render_template, redirect, request, url_for, session
 from flask import current_app as app
 from .questionnaire import BfiQuestionnaire
 import pandas as pd
@@ -66,13 +66,35 @@ def bfi_instructions():
     "/bfi/questionnaire/<int:question_number>/", methods=["GET", "POST"]
 )
 def bfi_questionnaire(question_number):
-    title = "Big Five Inventory questionnaire"
+    form = BfiQuestionnaire()
 
-    # GET (new question)
-    if request.method == "GET":
-        form = BfiQuestionnaire()
+    # POST - retrieve answer, store it, and redirect to next quetion
+    if form.validate_on_submit():
+        # retrieve user answer from the form
+        user_answer = form.answer.data
 
-        # in global variable loaded at instructions page to avoid readind csv file every time
+        # store user's answer in the dict session cookie (client-side)
+        if "user_answers" in session:
+            session["user_answers"][str(question_number)] = user_answer
+            session.modified = True
+        else:
+            session["user_answers"] = {str(question_number): user_answer}
+
+        # next question
+        if question_number != 45:
+            question_number += 1
+            return redirect(
+                url_for(
+                    "questionnaire_bp.bfi_questionnaire",
+                    question_number=question_number,
+                )
+            )
+        else:
+            return redirect(url_for("questionnaire_bp.bfi_results"))
+
+    # GET (render new question)
+    else:
+        # change to avoid reading csv file every time?
         df_questionnaire = pd.read_csv(
             "personality_bfi/bfi_questionnaire/static/data/bfi-questions.csv",
             index_col=0,
@@ -82,35 +104,21 @@ def bfi_questionnaire(question_number):
             question = df_questionnaire.Questions[question_number]
             return render_template(
                 "questionnaire.jinja2",
-                title=title,
                 question_number=question_number,
                 question=question,
                 form=form,
             )
 
         except KeyError:
-            # 404
-            # return redirect("/bfi/questionnaire/<question_number/")
+            # return redirect("/bfi/questionnaire/<question_number/") ?
             return "<br> Cette question n'existe pas..."
 
-    # POST (retrieve answer and redirect to next quetion) !
-    if form.validate_on_submit():
-        # retrieve user answer
-        answer = request.form["answer"]
-        print("User answer is " + answer)
-        # ImmutableMultiDict([("answer", "3"), ("next", "")])
-        print("This was question " + str(question_number))
 
-        # store it to compute scores later
+@questionnaire_bp.route("/bfi/results/")
+def bfi_results():
+    # retrieve user answers from session cookie
+    user_answers = session["user_answers"]
 
-        if question_number is not 45:
-            question_number += 1
-            # return redirect(questionnaire_bp.bfi_questionnaire)
-            return redirect(
-                url_for(
-                    "questionnaire_bp.bfi_questionnaire",
-                    question_number=question_number,
-                )
-            )
-        else:
-            return "Fin du questionnaire, merci :)"
+    # compute score
+
+    return render_template("results.jinja2")
