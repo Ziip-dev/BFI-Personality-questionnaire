@@ -1,6 +1,6 @@
 """BFI questionnaire routes"""
 
-from flask import Blueprint, render_template, redirect, request, url_for, session
+from flask import Blueprint, render_template, redirect, request, url_for, session, g
 from flask import current_app as app
 from .questionnaire import BfiQuestionnaire
 from .compute_traits import calculate_user_trait_scores
@@ -68,6 +68,7 @@ def bfi_instructions():
 )
 def bfi_questionnaire(question_number):
     form = BfiQuestionnaire()
+    question_max = 45
 
     # POST - retrieve answer, store it, and redirect to next quetion
     if form.validate_on_submit():
@@ -82,7 +83,7 @@ def bfi_questionnaire(question_number):
             session["user_answers"] = {str(question_number): user_answer}
 
         # next question
-        if question_number != 45:
+        if question_number != question_max:
             question_number += 1
             return redirect(
                 url_for(
@@ -95,6 +96,8 @@ def bfi_questionnaire(question_number):
 
     # GET (render new question)
     else:
+        g.progress = int(100 * question_number / question_max)
+
         # change to avoid reading csv file every time?
         df_questionnaire = pd.read_csv(
             "personality_bfi/bfi_questionnaire/static/data/bfi-questions.csv",
