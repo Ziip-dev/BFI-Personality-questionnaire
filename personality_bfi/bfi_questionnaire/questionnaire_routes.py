@@ -3,6 +3,7 @@
 from flask import Blueprint, render_template, redirect, request, url_for, session
 from flask import current_app as app
 from .questionnaire import BfiQuestionnaire
+from .compute_traits import calculate_user_trait_scores
 import pandas as pd
 
 
@@ -116,9 +117,11 @@ def bfi_questionnaire(question_number):
 
 @questionnaire_bp.route("/bfi/results/")
 def bfi_results():
-    # retrieve user answers from session cookie
+    # retrieve user answers dict from session cookie
     user_answers = session["user_answers"]
 
     # compute score
+    user_trait_scores = calculate_user_trait_scores(user_answers)
 
-    return render_template("results.jinja2")
+    # return results page
+    return render_template("results.jinja2", user_trait_scores=user_trait_scores)
