@@ -1,37 +1,34 @@
 {% extends "layout.jinja2" %}
 
-<!-- block pagestyles %} -->
-<!-- <link href"{{ url_for('static', filename='dist/css/style.css') }}" rel="stylesheet" type="text/css"> -->
-<!-- endblock %} -->
+{% block pagestyles %}
+  <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet" type="text/css">
+{% endblock %}
 
 {% block content %}
 
-<br>
-<div class="border">
-  <div class="bg-yellow-50 text-gray-800 text-center" style="height:24px;width:50%">{{ g.progress }}%</div>
-</div> 
-<br>
+<div id="global">
+  <h1>Big Five Inventory</h1>
 
-<div class="bg-yellow-50 shadow-lg max-w-lg">
-  <div class="">
-    <h1>Question {{question_number}}</h1>
-  </div>
+  <div class="progress">
+    <div class="progress" style="width:{{g.progress}}%;background-color:#F4A261;"><b>{{g.progress}}%</b></div>
+    
+  </div> 
 
-  <div class="bg-yellow-50 text-gray-800">
-    Je me vois comme quelqu'un qui... {{ question }}
-    <br>
+  <h2>Question {{question_number}}</h2>
+
+  <div id="question">
+    <p>Je me vois comme quelqu'un qui... {{ question }}.</p>
+
     <form method="post">
       {{ form.hidden_tag() }}
 
       {% for subfield in form.answer %}
       {{ subfield }} {{ subfield.label }} <br>
       {% endfor %}
+      <br>
+      {{ form.submit }}
+    </form>
   </div>
-  <br>
-  <div>
-    {{ form.submit }}
-  </div>
-  </form>
 </div>
 
 {% endblock %}
