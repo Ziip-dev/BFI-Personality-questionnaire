@@ -5,22 +5,33 @@
 <!-- endblock %} -->
 
 {% block content %}
-<span id=”progress”>{{ g.progress }}%</span>
-<h1>Question {{question_number}}</h1>
 
-Je me vois comme quelqu'un qui... {{ question }}
 <br>
+<div class="border">
+  <div class="bg-yellow-50 text-gray-800 text-center" style="height:24px;width:50%">{{ g.progress }}%</div>
+</div> 
 <br>
 
-<form method="post">
-  {{ form.hidden_tag() }}
+<div class="bg-yellow-50 shadow-lg max-w-lg">
+  <div class="">
+    <h1>Question {{question_number}}</h1>
+  </div>
 
-  {% for subfield in form.answer %}
-    {{ subfield }} {{ subfield.label }} <br>
-  {% endfor %}
+  <div class="bg-yellow-50 text-gray-800">
+    Je me vois comme quelqu'un qui... {{ question }}
+    <br>
+    <form method="post">
+      {{ form.hidden_tag() }}
 
+      {% for subfield in form.answer %}
+      {{ subfield }} {{ subfield.label }} <br>
+      {% endfor %}
+  </div>
   <br>
-  {{ form.submit }}
-</form>
+  <div>
+    {{ form.submit }}
+  </div>
+  </form>
+</div>
 
 {% endblock %}

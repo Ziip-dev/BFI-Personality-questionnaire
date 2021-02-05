@@ -4,10 +4,11 @@
 <head>
   {% include 'meta.jinja2' %}
   {% block pagestyles %}{% endblock %}
+  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
   <!-- <link rel="stylesheet" href="{{ url_for('static', filename='dist/css/styles.css') }}"> -->
 </head>
 
-<body>
+<body class="bg-gray-800 flex">
 
   {% block content %}{% endblock %}
 
