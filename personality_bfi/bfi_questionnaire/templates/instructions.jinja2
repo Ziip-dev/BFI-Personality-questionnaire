@@ -1,0 +1,36 @@
+
+{% extends "layout.jinja2" %}
+
+{% block pagestyles %}
+<link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+
+{% block content %}
+
+<div id="global">
+  <h1 class="text-center">{{ title if title else "Big Five Inventory" }}</h1>
+
+  <p class="text-white text-center">Le Big Five Inventory est un questionnaire de personnalité qui repose sur la théorie des traits.</p>
+
+  <div class="main-frame">
+
+    <p>Vous allez trouver un certain nombre de qualificatifs qui peuvent ou non s'appliquer à vous.<br>
+      Par exemple, acceptez-vous d'être quelqu'un qui aime passer du temps avec les autres ?</p>
+    <p>Indiquez combien vous approuvez ou désapprouvez l'affirmation :</p>
+    <ol>
+      <li> désapprouve fortement</li>
+      <li> désapprouve un peu</li>
+      <li> n'approuve ni ne désapprouve</li>
+      <li> approuve un peu</li>
+      <li> approuve fortement</li>
+    </ol>
+    <div class="text-center">
+      <a href={{ url_for("questionnaire_bp.bfi_questionnaire", question_number=1) }}>C'est parti !</a>
+    </div>
+
+  </div>
+
+</div>
+
+{% endblock %}
