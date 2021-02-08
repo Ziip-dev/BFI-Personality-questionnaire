@@ -1,17 +1,3 @@
-# Application threads. A common general assumption is
-# using 2 per available processor cores - to handle
-# incoming requests using one and performing background
-# operations using the other.
-# THREADS_PER_PAGE = 2
-
-# Enable protection agains *Cross-site Request Forgery (CSRF)*
-# CSRF_ENABLED     = True
-
-# Use a secure, unique and absolutely secret key for
-# signing the data.
-# CSRF_SESSION_KEY = "secret"
-
-
 """Class-based Flask app configuration."""
 
 from os import environ, path
@@ -27,17 +13,11 @@ class Config(object):
 
     SECRET_KEY = environ.get("SECRET_KEY")
     FLASK_ENV = environ.get("FLASK_ENV")
-    # SESSION_COOKIE_NAME = environ.get("SESSION_COOKIE_NAME")
     FLASK_APP = "wsgi.py"
 
     # Static Assets
     STATIC_FOLDER = "static"
     TEMPLATES_FOLDER = "templates"
-
-    # Flask-assets variables
-    LESS_BIN = "/usr/bin/lessc"
-    ASSETS_DEBUG = False
-    ASSETS_AUTO_BUILD = True
 
 
 class ProdConfig(Config):
