@@ -5,14 +5,32 @@
 {% endblock %}
 
 {% block content %}
-<h1>Traits de Personnalité</h1>
+  <div id="global">
+    <h1 class="text-center">{{ title if title else "Big Five Inventory" }}</h1>
+    <br>
+    <h2>Résultats</h2>
 
-<ul>
-  <li>Extraversion : {{ user_trait_scores["extraversion"] }}
-  <li>Agreabilite : {{ user_trait_scores["agreabilite"] }}
-  <li>Conscience : {{ user_trait_scores["conscience"] }}
-  <li>Nevrosisme : {{ user_trait_scores["nevrosisme"] }}
-  <li>Ouverture : {{ user_trait_scores["ouverture"] }}
-</ul>
+    <div class="main-frame">
+      <p>Voici vos traits de personnalité notés de 1 (correspond faiblement) à 5 (correspond fortement) :</p>
+      <ul>
+        <li>Extraversion : <b>{{ user_trait_scores["extraversion"] }}</b></li>
+        <li>Agreabilite : <b>{{ user_trait_scores["agreabilite"] }}</b></li>
+        <li>Conscience : <b>{{ user_trait_scores["conscience"] }}</b></li>
+        <li>Nevrosisme : <b>{{ user_trait_scores["nevrosisme"] }}</b></li>
+        <li>Ouverture : <b>{{ user_trait_scores["ouverture"] }}</b></li>
+      </ul>
+    </div>
 
+    <div class="text-white">
+      <p>Que signifient ces traits de personnalité ?</p>
+      <li><b>extraversion</b>, énergie, enthousiasme</li>
+      <li><b>agréabilite</b>, altruisme, affection</li>
+      <li><b>conscience</b>, contrôle, contrainte</li>
+      <li><b>nevrosisme</b>, émotions négatives, nervosité</li>
+      <li><b>ouverture</b>, originalité, ouverture d'esprit</li>
+    </div>
+  </div>
 {% endblock %}
+
+
+

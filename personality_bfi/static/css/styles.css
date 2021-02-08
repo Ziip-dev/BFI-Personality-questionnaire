@@ -1,16 +1,37 @@
 #global
 {
     width: 50%;
-    max-width: 700px;
+    max-width: 600px;
     min-width: 400px;
     margin: auto;
 }
 
-#question
+.progress
+{
+    height:24px;
+    background-color: white;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.main-frame
 {
     background-color: white;
     padding: 30px;
     border-radius: 30px;
+    font-size: 0.9em;
+}
+
+.text-center
+{
+    text-align: center;
+}
+
+.text-white
+{
+    color: white;
+    font-size: 0.9em;
+    text-justify: auto;
 }
 
 body
@@ -25,15 +46,4 @@ h1, h2
     color: white;
 }
 
-h1
-{
-    text-align: center;
-}
 
-.progress
-{
-    height:24px;
-    background-color: white;
-    border-radius: 5px;
-    text-align: center;
-}

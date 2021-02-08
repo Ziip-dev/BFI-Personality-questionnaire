@@ -4,19 +4,19 @@
   <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet" type="text/css">
 {% endblock %}
 
+
 {% block content %}
 
 <div id="global">
-  <h1>Big Five Inventory</h1>
+  <h1 class="text-center">{{ title if title else "Big Five Inventory" }}</h1>
 
   <div class="progress">
     <div class="progress" style="width:{{g.progress}}%;background-color:#F4A261;"><b>{{g.progress}}%</b></div>
-    
   </div> 
 
   <h2>Question {{question_number}}</h2>
 
-  <div id="question">
+  <div class="main-frame">
     <p>Je me vois comme quelqu'un qui... {{ question }}.</p>
 
     <form method="post">
