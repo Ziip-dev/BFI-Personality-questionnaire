@@ -3,7 +3,7 @@
 from flask import Blueprint, render_template, redirect, request, url_for, session, g
 from flask import current_app as app
 from .questionnaire import BfiQuestionnaire
-from .compute_traits import calculate_user_trait_scores
+from .compute_traits import fetch_question, calculate_user_trait_scores
 import pandas as pd
 
 
@@ -96,32 +96,26 @@ def bfi_questionnaire(question_number):
 
     # GET (render new question)
     else:
-        g.progress = int(100 * question_number / question_max)
-
-        # change to avoid reading csv file every time?
-        df_questionnaire = pd.read_csv(
-            "personality_bfi/bfi_questionnaire/static/data/bfi-questions.csv",
-            index_col=0,
-        )
-
-        try:
-            question = df_questionnaire.Questions[question_number]
+        if 1 <= question_number <= question_max:
+            g.progress = int(100 * question_number / question_max)
+            question = fetch_question(question_number)
             return render_template(
                 "questionnaire.jinja2",
                 question_number=question_number,
                 question=question,
                 form=form,
             )
-
-        except KeyError:
-            # return redirect("/bfi/questionnaire/<question_number/") ?
-            return "<br> Cette question n'existe pas..."
+        else:
+            return "wrong question number"
 
 
 @questionnaire_bp.route("/bfi/results/")
 def bfi_results():
     # retrieve user answers dict from session cookie
-    user_answers = session["user_answers"]
+    try:
+        user_answers = session["user_answers"]
+    except KeyError:
+        return "Vous devez d'abord compléter le questionnaire, nous ne pouvons pas deviner votre personnalité ;)"
 
     # compute score
     user_trait_scores = calculate_user_trait_scores(user_answers)

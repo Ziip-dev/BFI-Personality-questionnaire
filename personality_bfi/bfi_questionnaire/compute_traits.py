@@ -1,4 +1,63 @@
-"""Module to compute user's peronality trait scores from the answers dict"""
+"""Module to compute user's peronality traits: it contains the function that fetch the right question to ask to the user as well as the function that calculates the user's scores from the answers dict"""
+
+
+def fetch_question(question_number):
+    """
+    This functions holds the BFI questions.
+    It takes a question number from 1 to 45 in input and returns the corresponding question.
+        fetch_question(10)
+        returns "s'intéresse à de nombreux sujets"
+    """
+
+    questions_dict = {
+        1: "est bavard",
+        2: "a tendance à critiquer les autres",
+        3: "travaille consciencieusement",
+        4: "est déprimé, cafardeux",
+        5: "est créatif, plein d'idées originales",
+        6: "est réservé",
+        7: "est serviable et n'est pas égoïste avec les autres",
+        8: "peut être parfois négligent",
+        9: "est " "relaxe" ", détendu, gère bien les stress",
+        10: "s'intéresse à de nombreux sujets",
+        11: "est plein d'énergie",
+        12: "commence facilement à se disputer avec les autres",
+        13: "est fiable dans son travail",
+        14: "peut être angoissé",
+        15: "est ingénieux, une grosse tête",
+        16: "communique beaucoup d'enthousiasme",
+        17: "est indulgent de nature",
+        18: "a tendance à être désorganisé",
+        19: "se tourmente beaucoup",
+        20: "a une grande imagination",
+        21: "a tendance à être silencieux",
+        22: "fait généralement confiance aux autres",
+        23: "a tendance à être paresseux",
+        24: "est quelqu'un de tempéré, pas facilement troublé",
+        25: "est inventif",
+        26: "a une forte personnalité, s'exprime avec assurance",
+        27: "est parfois dédaigneux, méprisant",
+        28: "persévère jusqu'à ce que sa tâche soit finie",
+        29: "peut être lunatique d'humeur changeante",
+        30: "apprécie les activités artistiques et esthétiques",
+        31: "est quelque fois timide, inhibé",
+        32: "est prévenant et gentil avec presque tout le monde",
+        33: "est efficace dans son travail",
+        34: "reste calme dans les situations angoissantes",
+        35: "préfère un travail simple et routinier",
+        36: "est sociable, extraverti",
+        37: "est parfois impoli avec les autres",
+        38: "fait des projets et les poursuit",
+        39: "est facilement anxieux",
+        40: "aime réfléchir et jouer avec des idées",
+        41: "est peu intéressé par tout ce qui est artistique",
+        42: "aime coopérer avec les autres",
+        43: "est facilement distrait",
+        44: "a de bonnes connaissances en art, musique ou en littérature",
+        45: "cherche des histoires aux autres",
+    }
+
+    return questions_dict[question_number]
 
 
 def calculate_user_trait_scores(user_answers):
@@ -50,8 +109,8 @@ def calculate_user_trait_scores(user_answers):
 
     # calculate the mean score per trait
     for trait in user_trait_scores:
-        user_trait_scores[trait] = sum(user_trait_scores[trait]) / len(
-            user_trait_scores[trait]
+        user_trait_scores[trait] = round(
+            sum(user_trait_scores[trait]) / len(user_trait_scores[trait]), 1
         )
 
     return user_trait_scores
