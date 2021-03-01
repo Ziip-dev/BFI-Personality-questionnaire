@@ -1,11 +1,11 @@
 """BFI questionnaire routes"""
 
-from flask import Blueprint, render_template, redirect, request, url_for, session, g
+from flask import Blueprint
 from flask import current_app as app
-from .questionnaire import BfiQuestionnaire
-from .compute_traits import fetch_question, calculate_user_trait_scores
-import pandas as pd
+from flask import g, redirect, render_template, request, session, url_for
 
+from .compute_traits import calculate_user_trait_scores, fetch_question
+from .questionnaire import BfiQuestionnaire
 
 # Blueprint configuration
 questionnaire_bp = Blueprint(
