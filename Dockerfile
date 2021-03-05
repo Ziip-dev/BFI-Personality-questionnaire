@@ -48,7 +48,8 @@ FROM python-base as production
 COPY --from=builder-base $PYSETUP_PATH $PYSETUP_PATH
 
 WORKDIR $APP_DIR
-COPY ./personality_bfi .
+# COPY ./personality_bfi .
+COPY . .
 
 EXPOSE 5001
 # CMD ["uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "80"]
