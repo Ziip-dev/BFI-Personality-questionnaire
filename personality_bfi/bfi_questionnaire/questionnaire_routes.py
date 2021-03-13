@@ -17,6 +17,7 @@ questionnaire_bp = Blueprint(
 
 
 # Blueprint routes
+@questionnaire_bp.route("/", methods=["GET"])
 @questionnaire_bp.route("/bfi/", methods=["GET"])
 def bfi_welcome():
     return render_template("instructions.jinja2")

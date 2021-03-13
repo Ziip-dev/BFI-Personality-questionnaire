@@ -47,11 +47,19 @@ RUN poetry install --no-dev
 FROM python-base as production
 COPY --from=builder-base $PYSETUP_PATH $PYSETUP_PATH
 
+RUN adduser -D ziip
+
 WORKDIR $APP_DIR
-# COPY ./personality_bfi .
-COPY . .
+
+COPY ./personality_bfi ./personality_bfi
+COPY wsgi.py config.py docker-entrypoint.sh ./
+RUN chmod a+x docker-entrypoint.sh
+
+ENV FLASK_APP=wsgi.py
+
+RUN chown -R ziip:ziip ./
+USER ziip
 
 EXPOSE 5001
-# CMD ["uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "80"]
-CMD ["flask", "run", "--host=0.0.0.0"]
+ENTRYPOINT ["./docker-entrypoint.sh"]
 

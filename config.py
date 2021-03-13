@@ -1,6 +1,7 @@
 """Class-based Flask app configuration."""
 
 from os import environ, path
+
 from dotenv import load_dotenv
 
 # Define the application dierctory
