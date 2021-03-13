@@ -13,8 +13,8 @@ class Config(object):
     """Base config."""
 
     SECRET_KEY = environ.get("SECRET_KEY")
-    FLASK_ENV = environ.get("FLASK_ENV")
-    FLASK_APP = "wsgi.py"
+    # FLASK_ENV = environ.get("FLASK_ENV")
+    # FLASK_APP = "wsgi.py"
 
     # Static Assets
     STATIC_FOLDER = "static"

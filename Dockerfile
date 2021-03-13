@@ -52,7 +52,7 @@ RUN adduser -D ziip
 WORKDIR $APP_DIR
 
 COPY ./personality_bfi ./personality_bfi
-COPY wsgi.py docker-entrypoint.sh ./
+COPY wsgi.py config.py docker-entrypoint.sh ./
 RUN chmod a+x docker-entrypoint.sh
 
 RUN chown -R ziip:ziip ./
