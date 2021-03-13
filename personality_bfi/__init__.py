@@ -2,13 +2,14 @@ __version__ = "0.1.0"
 
 """Initialize app."""
 import os
+
 from flask import Flask
 
 
 def create_app():
     """Construct core application."""
     app = Flask(__name__, instance_relative_config=False)
-    app.config.from_object("config.DevConfig")
+    # app.config.from_object("config.DevConfig")
 
     with app.app_context():
         # Import parts of the application
