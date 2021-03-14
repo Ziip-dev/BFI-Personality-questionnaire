@@ -1,8 +1,6 @@
 __version__ = "0.1.0"
 
 """Initialize app."""
-import os
-
 from flask import Flask
 
 
