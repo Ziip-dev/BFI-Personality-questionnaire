@@ -1,36 +1,38 @@
 
 {% extends "layout.jinja2" %}
 
-{% block pagestyles %}
-<link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet" type="text/css">
-{% endblock %}
-
-
 {% block content %}
 
-<div id="global">
-  <h1 class="text-center">{{ title if title else "Big Five Inventory" }}</h1>
+<div class="flex flex-row w-full m-auto">
 
-  <p class="text-white text-center">Le Big Five Inventory est un questionnaire de personnalité qui repose sur la théorie des traits.</p>
-
-  <div class="main-frame">
-
-    <p>Vous allez trouver un certain nombre de qualificatifs qui peuvent ou non s'appliquer à vous.<br>
-      Par exemple, acceptez-vous d'être quelqu'un qui aime passer du temps avec les autres ?</p>
-    <p>Indiquez combien vous approuvez ou désapprouvez l'affirmation :</p>
-    <ol>
-      <li> désapprouve fortement</li>
-      <li> désapprouve un peu</li>
-      <li> n'approuve ni ne désapprouve</li>
-      <li> approuve un peu</li>
-      <li> approuve fortement</li>
-    </ol>
-    <div class="text-center">
-      <a href={{ url_for("questionnaire_bp.bfi_questionnaire", question_number=1) }}>C'est parti !</a>
+  <div class="w-auto sm:w-1/6 xl:w-1/4"></div>
+  <div class="flex flex-col">
+    <div class="text-center text-white text-3xl font-bold my-5">
+      <p>{{ title if title else "Big Five Inventory" }}</p>
     </div>
 
-  </div>
+    <div class="text-white text-center">
+      <p>Le Big Five Inventory est un questionnaire de personnalité qui repose sur la théorie des traits.</p>
+    </div>
 
+    <div class="bg-white p-8 rounded-3xl my-5">
+      <p>Vous allez trouver un certain nombre de qualificatifs qui peuvent ou non s'appliquer à vous.</p>
+      <p>Par exemple, acceptez-vous d'être quelqu'un qui aime passer du temps avec les autres ?</p>
+      <p class="mt-4">Indiquez combien vous approuvez ou désapprouvez l'affirmation :</p>
+      <ol class="list-decimal ml-10">
+        <li> désapprouve fortement</li>
+        <li> désapprouve un peu</li>
+        <li> n'approuve ni ne désapprouve</li>
+        <li> approuve un peu</li>
+        <li> approuve fortement</li>
+      </ol>
+      <div class="text-center mt-5">
+        <a href={{ url_for("questionnaire_bp.bfi_questionnaire", question_number=1) }}>C'est parti !</a>
+      </div>
+    </div>
+  </div>
+  <div class="w-auto sm:w-1/6 xl:w-1/4"></div>
+  
 </div>
 
 {% endblock %}

@@ -1,22 +1,17 @@
 {% extends "layout.jinja2" %}
 
-{% block pagestyles %}
-  <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet" type="text/css">
-{% endblock %}
-
-
 {% block content %}
 
-<div id="global">
+<div id="w-1/2 m-auto">
   <h1 class="text-center">{{ title if title else "Big Five Inventory" }}</h1>
 
-  <div class="progress">
-    <div class="progress" style="width:{{g.progress}}%;background-color:#F4A261;"><b>{{g.progress}}%</b></div>
+  <div class="h-6 bg-white rounded text-center">
+    <div class="h-6 bg-white rounded text-center" style="width:{{g.progress}}%;background-color:#F4A261;"><b>{{g.progress}}%</b></div>
   </div> 
 
   <h2>Question {{question_number}}</h2>
 
-  <div class="main-frame">
+  <div class="bg-white p-8">
     <p>Je me vois comme quelqu'un qui... {{ question }}.</p>
 
     <form method="post">

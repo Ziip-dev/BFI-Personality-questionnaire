@@ -1,16 +1,12 @@
 {% extends "layout.jinja2"%}
 
-{% block pagestyles %}
-  <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet" type="text/css">
-{% endblock %}
-
 {% block content %}
-  <div id="global">
+  <div id="w-1/2 m-auto">
     <h1 class="text-center">{{ title if title else "Big Five Inventory" }}</h1>
     <br>
     <h2>Résultats</h2>
 
-    <div class="main-frame">
+    <div class="bg-white p-8">
       <p>Voici vos traits de personnalité notés de 1 (correspond faiblement) à 5 (correspond fortement) :</p>
       <ul>
         <li>Extraversion : <b>{{ user_trait_scores["extraversion"] }}</b></li>

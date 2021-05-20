@@ -3,13 +3,17 @@
 
 <head>
   {% include 'meta.jinja2' %}
-  {% block pagestyles %}{% endblock %}
+  <link href="{{ url_for('static', filename='css/tailwind.css') }}" rel="stylesheet" type="text/css">
 </head>
 
 <body>
+  <main class="bg-gray-700 relative h-screen overflow-hidden">
+    <div class="flex items-start justify-between">
 
-  {% block content %}{% endblock %}
+      {% block content %}{% endblock %}
 
+    </div>
+  </main>
 </body>
 
 </html>
