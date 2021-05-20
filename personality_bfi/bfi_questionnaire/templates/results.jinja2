@@ -1,14 +1,22 @@
 {% extends "layout.jinja2"%}
 
 {% block content %}
-  <div id="w-1/2 m-auto">
-    <h1 class="text-center">{{ title if title else "Big Five Inventory" }}</h1>
-    <br>
-    <h2>Résultats</h2>
 
-    <div class="bg-white p-8">
+<div class="flex flex-row w-full m-auto">
+
+  <div class="w-auto sm:w-1/6 xl:w-1/4"></div>
+  <div class="flex flex-col w-full sm:w-2/3 xl:w-1/2">
+    <div class="text-center text-white text-3xl font-bold my-5">
+      <p>{{ title if title else "Big Five Inventory" }}</p>
+    </div>
+
+    <div class="text-white text-lg font-bold mt-5 pl-8">
+      <p>Résultats</p>
+    </div>
+
+    <div class="bg-white p-8 rounded-3xl my-5">
       <p>Voici vos traits de personnalité notés de 1 (correspond faiblement) à 5 (correspond fortement) :</p>
-      <ul>
+      <ul class="ml-5 mt-5">
         <li>Extraversion : <b>{{ user_trait_scores["extraversion"] }}</b></li>
         <li>Agreabilite : <b>{{ user_trait_scores["agreabilite"] }}</b></li>
         <li>Conscience : <b>{{ user_trait_scores["conscience"] }}</b></li>
@@ -17,15 +25,18 @@
       </ul>
     </div>
 
-    <div class="text-white">
+    <div class="text-white mx-5 pt-2">
       <p>Que signifient ces traits de personnalité ?</p>
-      <li><b>extraversion</b>, énergie, enthousiasme</li>
-      <li><b>agréabilite</b>, altruisme, affection</li>
-      <li><b>conscience</b>, contrôle, contrainte</li>
-      <li><b>nevrosisme</b>, émotions négatives, nervosité</li>
-      <li><b>ouverture</b>, originalité, ouverture d'esprit</li>
+      <ul class="list-disc mx-10 my-3">
+        <li><b>extraversion</b>, énergie, enthousiasme</li>
+        <li><b>agréabilite</b>, altruisme, affection</li>
+        <li><b>conscience</b>, contrôle, contrainte</li>
+        <li><b>nevrosisme</b>, émotions négatives, nervosité</li>
+        <li><b>ouverture</b>, originalité, ouverture d'esprit</li>
+      </ul>
     </div>
   </div>
+
 {% endblock %}
 
 

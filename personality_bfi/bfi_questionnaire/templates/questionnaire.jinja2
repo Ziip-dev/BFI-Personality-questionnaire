@@ -2,28 +2,43 @@
 
 {% block content %}
 
-<div id="w-1/2 m-auto">
-  <h1 class="text-center">{{ title if title else "Big Five Inventory" }}</h1>
+<div class="flex flex-row w-full m-auto">
 
-  <div class="h-6 bg-white rounded text-center">
-    <div class="h-6 bg-white rounded text-center" style="width:{{g.progress}}%;background-color:#F4A261;"><b>{{g.progress}}%</b></div>
-  </div> 
+  <div class="w-auto sm:w-1/6 xl:w-1/4"></div>
+  <div class="flex flex-col w-full sm:w-2/3 xl:w-1/2">
+    <div class="text-center text-white text-3xl font-bold my-5">
+      <p>{{ title if title else "Big Five Inventory" }}</p>
+    </div>
 
-  <h2>Question {{question_number}}</h2>
+    <div class="h-6 bg-white rounded-md text-center mt-2">
+      <div class="h-6 bg-white rounded-md text-center" style="width:{{g.progress}}%;background-color:#F4A261;">
+        <b>{{g.progress}}%</b>
+      </div>
+    </div> 
 
-  <div class="bg-white p-8">
-    <p>Je me vois comme quelqu'un qui... {{ question }}.</p>
+    <div class="text-white text-lg font-bold mt-5 pl-8">
+      <p>Question {{question_number}} / 45</p>
+    </div>
 
-    <form method="post">
-      {{ form.hidden_tag() }}
+    <div class="bg-white p-8 rounded-3xl my-5">
+      <p>Je me vois comme quelqu'un qui... {{ question }}.</p>
 
-      {% for subfield in form.answer %}
-      {{ subfield }} {{ subfield.label }} <br>
-      {% endfor %}
-      <br>
-      {{ form.submit }}
-    </form>
+      <form class="m-5" method="post">
+        {{ form.hidden_tag() }}
+
+        {% for subfield in form.answer %}
+        {{ subfield }} {{ subfield.label }} <br>
+        {% endfor %}
+        <br>
+        <div class="flex justify-center">
+          {{ form.submit }}
+        </div>
+      </form>
+    </div>
   </div>
+  <div class="w-auto sm:w-1/6 xl:w-1/4"></div>
 </div>
+
+
 
 {% endblock %}
