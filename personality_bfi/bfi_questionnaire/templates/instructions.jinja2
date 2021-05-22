@@ -27,7 +27,7 @@
         <li> approuve fortement</li>
       </ol>
       <div class="text-center mt-5">
-        <a href={{ url_for("questionnaire_bp.bfi_questionnaire", question_number=1) }}>C'est parti !</a>
+        <button type="button" class="bg-yellow-600 px-5 py-2 text-sm text-white font-semibold rounded-full hover:bg-yellow-700" onclick="window.location.href='{{ url_for("questionnaire_bp.bfi_questionnaire", question_number=1) }}';">C'est parti !</button>
       </div>
     </div>
   </div>

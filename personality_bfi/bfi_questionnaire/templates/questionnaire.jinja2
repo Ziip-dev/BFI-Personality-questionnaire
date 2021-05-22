@@ -11,7 +11,7 @@
     </div>
 
     <div class="h-6 bg-white rounded-md text-center mt-2">
-      <div class="h-6 bg-white rounded-md text-center" style="width:{{g.progress}}%;background-color:#F4A261;">
+      <div class="h-6 bg-white rounded-md text-center bg-yellow-600" style="width:{{g.progress}}%;">
         <b>{{g.progress}}%</b>
       </div>
     </div> 
@@ -31,7 +31,7 @@
         {% endfor %}
         <br>
         <div class="flex justify-center">
-          {{ form.submit }}
+          {{ form.submit(class="bg-yellow-600 px-3 py-2 text-sm text-white font-medium rounded-full hover:bg-yellow-700") }}
         </div>
       </form>
     </div>
