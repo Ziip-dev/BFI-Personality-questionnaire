@@ -1,7 +1,7 @@
 """BFI questionnaire routes"""
 
 import csv
-from os import getcwd, path
+from os import getcwd, mkdir, path
 
 from flask import Blueprint
 from flask import current_app as app
@@ -116,8 +116,13 @@ def bfi_results():
     # merge user info + user trait scores into a single dict
     user_info.update(user_trait_scores)
 
+    # check data directory existence
+    data_dir = f"{getcwd()}/personality_bfi/bfi_questionnaire/data/"
+    if not path.isdir(data_dir):
+        mkdir(data_dir)
+
     # write user info to users file with header first if file doesn't exist
-    data_file = f"{getcwd()}/personality_bfi/bfi_questionnaire/data/users.csv"
+    data_file = path.join(data_dir, "users.csv")
 
     if path.exists(data_file):
         with open(data_file, "a") as f:
