@@ -1,7 +1,7 @@
 """WTForm questionnaire file"""
 
 from flask_wtf import FlaskForm
-from wtforms import RadioField, SubmitField
+from wtforms import IntegerField, RadioField, StringField, SubmitField
 from wtforms.validators import DataRequired
 
 
@@ -16,4 +16,13 @@ class BfiQuestionnaire(FlaskForm):
         ],
         validators=[DataRequired()],
     )
-    submit = SubmitField("Question Suivante")
+    submit = SubmitField("Question suivante")
+
+
+class UserInfo(FlaskForm):
+    email = StringField("Adresse email")
+    phone = StringField("Numéro de téléphone")
+    birth = IntegerField("Age")
+    genre = RadioField(choices=[("homme", "homme"), ("femme", "femme")])
+
+    submit = SubmitField("Terminer")
