@@ -15,24 +15,53 @@
     </div>
 
     <div class="bg-white p-8 rounded-3xl my-5">
-      <p>Voici vos traits de personnalité notés de 1 (correspond faiblement) à 5 (correspond fortement) :</p>
-      <ul class="ml-5 mt-5">
-        <li>Extraversion : <b>{{ user_trait_scores["extraversion"] }}</b></li>
-        <li>Agreabilite : <b>{{ user_trait_scores["agreabilite"] }}</b></li>
-        <li>Conscience : <b>{{ user_trait_scores["conscience"] }}</b></li>
-        <li>Nevrosisme : <b>{{ user_trait_scores["nevrosisme"] }}</b></li>
-        <li>Ouverture : <b>{{ user_trait_scores["ouverture"] }}</b></li>
-      </ul>
+      <p>Voici vos traits de personnalité notés de 1 (correspond faiblement) à 5 (correspond fortement) selon le modèle des Big Five :</p>
+      <table style="width:100%" class="my-4 table-fixed">
+        <tr>
+          <th class="text-sm w-1/2">Vos traits de<br>personnalité</th>
+          <th class="text-sm w-1/4">Moyenne Hommes<br>(écart type)</th>
+          <th class="text-sm w-1/4">Moyenne Femmes<br>(écart type)</th>
+        </tr>
+        <tr>
+          <td class="text-center">Extraversion : <b>{{ user_trait_scores["extraversion"] }}</b></td>
+          <td class="text-center">3,1 (0,7)</td>
+          <td class="text-center">3,2 (0,8)</td>
+        </tr>
+        <tr>
+          <td class="text-center">Agreabilite : <b>{{ user_trait_scores["agreabilite"] }}</b></td>
+          <td class="text-center">3,8 (0,5)</td>
+          <td class="text-center">3,9 (0,5)</td>
+        </tr>
+        <tr>
+          <td class="text-center">Conscience : <b>{{ user_trait_scores["conscience"] }}</b></td>
+          <td class="text-center">3,1 (0,6)</td>
+          <td class="text-center">3,5 (0,6)</td>
+        </tr>
+        <tr>
+          <td class="text-center">Nevrosisme : <b>{{ user_trait_scores["nevrosisme"] }}</b></td>
+          <td class="text-center">2,6 (0,7)</td>
+          <td class="text-center">3,1 (0,8)</td>
+        </tr>
+        <tr>
+          <td class="text-center">Ouverture : <b>{{ user_trait_scores["ouverture"] }}</b></td>
+          <td class="text-center">3,1 (0,6)</td>
+          <td class="text-center">3,3 (0,6)</td>
+        </tr>
+      </table> 
+      
+
+      <p class="pt-4 text-sm">Attention, ce test donne uniquement des valeurs approximatives et indicatives qui ne correspondent en aucun cas à une analyse psychologique réalisée par un professionnel.</p>
     </div>
 
     <div class="text-white mx-5 pt-2">
-      <p>Que signifient ces traits de personnalité ?</p>
+      <p>Que signifient ces traits de personnalité ? <i><a class="pl-4 text-yellow-600" href="https://fr.wikipedia.org/wiki/Mod%C3%A8le_des_Big_Five_(psychologie)">Cliquez ici pour en savoir plus...</a></i></p>
       <ul class="list-disc mx-10 my-3">
-        <li><b>extraversion</b>, énergie, enthousiasme</li>
-        <li><b>agréabilite</b>, altruisme, affection</li>
-        <li><b>conscience</b>, contrôle, contrainte</li>
-        <li><b>nevrosisme</b>, émotions négatives, nervosité</li>
-        <li><b>ouverture</b>, originalité, ouverture d'esprit</li>
+
+        <li><b>Extraversion - </b>énergie, émotions positives, tendance à chercher la stimulation et la compagnie des autres.</li>
+        <li><b>Agréabilité - </b>une tendance à être compatissant et coopératif plutôt que soupçonneux et antagonique envers les autres.</li>
+        <li><b>Conscienciosité - </b>autodiscipline, respect des obligations, organisation plutôt que spontanéité, orienté vers des buts.</li>
+        <li><b>Névrosisme - </b>contraire de stabilité émotionnelle, tendance à éprouver facilement des émotions désagréables comme la colère, l'inquiétude ou la dépression, vulnérabilité.</li>
+        <li><b>Ouverture - </b>appréciation de l'art, de l'émotion, de l'aventure, des idées peu communes ou des idées nouvelles, curiosité et imagination.</li>
       </ul>
     </div>
   </div>
