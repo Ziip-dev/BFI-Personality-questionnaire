@@ -1,9 +1,9 @@
 ###############################################
 # Base Image
 ###############################################
-FROM python:3.9.2-alpine as python-base
+FROM python:3.10.4-alpine3.15 as python-base
 
-MAINTAINER P.Dulaud (paul.dulaud@utt.fr)
+LABEL org.opencontainers.image.authors="paul.dulaud@utt.fr"
 
 # Environment variables
 ENV APP_DIR=/usr/src/app \
@@ -12,7 +12,7 @@ ENV APP_DIR=/usr/src/app \
     PIP_NO_CACHE_DIR=off \
     PIP_DISABLE_PIP_VERSION_CHECK=on \
     PIP_DEFAULT_TIMEOUT=100 \
-    POETRY_VERSION=1.1.4 \
+    POETRY_VERSION=1.1.13 \
     POETRY_HOME="/opt/poetry" \
     POETRY_VIRTUALENVS_IN_PROJECT=true \
     POETRY_NO_INTERACTION=1 \
@@ -31,7 +31,7 @@ RUN apk -U upgrade \
     && apk add --no-cache curl
 
 # install poetry - respects $POETRY_VERSION & $POETRY_HOME
-RUN curl -sSL https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.py | python
+RUN curl -sSL https://install.python-poetry.org | python3 -
 
 # copy project requirement files here to ensure they will be cached.
 WORKDIR $PYSETUP_PATH
@@ -51,7 +51,7 @@ RUN adduser -D ziip
 
 WORKDIR $APP_DIR
 
-COPY ./personality_bfi ./personality_bfi
+COPY ./personality_bfi ./bfi
 COPY wsgi.py config.py docker-entrypoint.sh ./
 RUN chmod a+x docker-entrypoint.sh
 
