@@ -19,17 +19,27 @@
 
       {{ form.email.label(class="pb-1 text-gray-600") }}
       {{ form.email(class="mb-2 pl-2 text-gray-700 border border-gray-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent") }}
+      
       {{ form.phone.label(class="pb-1 text-gray-600") }}
       {{ form.phone(class="mb-2 pl-2 text-gray-700 border border-gray-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent") }}
+
       {{ form.birth.label(class="pb-1 text-gray-600") }}
       {{ form.birth(class="mb-2 pl-2 text-gray-700 border border-gray-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent") }}
       
-      {{ form.genre.label(class="text-gray-600") }}
+      {{ form.genre.label(class="text-gray-600 pt-2") }}
       <div class="flex flex-row items-center">
         {% for subfield in form.genre %}
         {{ subfield(class="ml-2") }} {{ subfield.label(class="px-2 text-gray-700") }}
         {% endfor %}
       </div>
+
+      {{ form.phone_os.label(class="text-gray-600 pt-2") }}
+      <div class="flex flex-row items-center">
+        {% for subfield in form.phone_os %}
+        {{ subfield(class="ml-2") }} {{ subfield.label(class="px-2 text-gray-700") }}
+        {% endfor %}
+      </div>
+
       <div class="flex justify-center mt-4">
         {{ form.submit(class="bg-yellow-600 px-3 py-2 text-sm text-white font-medium rounded-full hover:bg-yellow-700") }}
       </div>

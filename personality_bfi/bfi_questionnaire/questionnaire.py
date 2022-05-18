@@ -20,9 +20,9 @@ class BfiQuestionnaire(FlaskForm):
 
 
 class UserInfo(FlaskForm):
-    email = StringField("Adresse email")
-    phone = StringField("Numéro de téléphone")
-    birth = IntegerField("Age")
-    genre = RadioField(choices=[("homme", "homme"), ("femme", "femme")])
-
-    submit = SubmitField("Terminer")
+    email    = StringField("Adresse email")
+    phone    = StringField("Numéro de téléphone")
+    phone_os = RadioField("Type de téléphone", choices=[("android", "android"), ("ios", "iphone")])
+    birth    = IntegerField("Age")
+    genre    = RadioField(choices=[("homme", "homme"), ("femme", "femme")])
+    submit   = SubmitField("Terminer")
