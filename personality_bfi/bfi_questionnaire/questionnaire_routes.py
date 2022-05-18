@@ -85,57 +85,64 @@ def bfi_end():
         phone_os = form.phone_os.data
         genre = form.genre.data
 
-        # store user info in the session cookie (client-side)
-        session["user_info"] = {
+        # store user info in a dict
+        user_info = {
             str("email"): email,
             str("phone"): phone,
-            str("os"): phone_os,
-            str("age"): age,
             str("genre"): genre,
+            str("age"): age,
+            str("os"): phone_os,
         }
 
-        # redirect to results page
-        return redirect(url_for("questionnaire_bp.bfi_results"))
+        # retrieve user answers from session cookie
+        try:
+            user_answers = session["user_answers"]
+
+        except KeyError:
+            return """
+                   <h2>Oups... vous ne devriez pas être ici, je vous laisse rebrousser chemin pour cette fois ;)</h2>
+                   <div>
+                       <ul>
+                       <li>vous devez d'abord compléter le questionnaire en entier</li>
+                       <br>
+                       <li>ou bien vous avez déjà soumis le questionnaire : vos résultats ont été enregistrés mais votre session effacée par sécurité</li>
+                       </ul>
+                   </div>
+                   """
+
+        # compute trait scores
+        user_trait_scores = calculate_user_trait_scores(user_answers)
+
+        # merge user info + user trait scores into a single dict
+        user_info.update(user_trait_scores)
+
+        # check data directory existence
+        data_dir = f"{getcwd()}/personality_bfi/bfi_questionnaire/data/"
+        if not path.isdir(data_dir):
+            mkdir(data_dir)
+
+        # write user info to users file with header first if file doesn't exist
+        data_file = path.join(data_dir, "users.csv")
+
+        if path.exists(data_file):
+            with open(data_file, "a") as f:
+                w = csv.DictWriter(f, user_info.keys())
+                w.writerow(user_info)
+
+        else:
+            with open(data_file, "a") as f:
+                w = csv.DictWriter(f, user_info.keys())
+                w.writeheader()
+                w.writerow(user_info)
+
+
+        # render results page
+        # return redirect(url_for("questionnaire_bp.bfi_results"))
+        session.clear()
+        return render_template("results.jinja2", user_trait_scores=user_trait_scores)
+
 
     # GET (render questionnaire end page with user info form)
     else:
         return render_template("end.jinja2", form=form)
 
-
-@questionnaire_bp.route("/bfi/results/")
-def bfi_results():
-    # retrieve user answers from session cookie
-    try:
-        user_answers = session["user_answers"]
-
-    except KeyError:
-        return "Vous devez d'abord compléter le questionnaire, nous ne pouvons pas deviner votre personnalité ;)"
-
-    # retrieve user info and compute trait scores
-    user_info = session["user_info"]
-    user_trait_scores = calculate_user_trait_scores(user_answers)
-
-    # merge user info + user trait scores into a single dict
-    user_info.update(user_trait_scores)
-
-    # check data directory existence
-    data_dir = f"{getcwd()}/personality_bfi/bfi_questionnaire/data/"
-    if not path.isdir(data_dir):
-        mkdir(data_dir)
-
-    # write user info to users file with header first if file doesn't exist
-    data_file = path.join(data_dir, "users.csv")
-
-    if path.exists(data_file):
-        with open(data_file, "a") as f:
-            w = csv.DictWriter(f, user_info.keys())
-            w.writerow(user_info)
-
-    else:
-        with open(data_file, "a") as f:
-            w = csv.DictWriter(f, user_info.keys())
-            w.writeheader()
-            w.writerow(user_info)
-
-    # return results page
-    return render_template("results.jinja2", user_trait_scores=user_trait_scores)
