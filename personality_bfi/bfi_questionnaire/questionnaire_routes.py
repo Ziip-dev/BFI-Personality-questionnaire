@@ -82,12 +82,14 @@ def bfi_end():
         email = form.email.data
         phone = form.phone.data
         age = form.birth.data
+        phone_os = form.phone_os.data
         genre = form.genre.data
 
         # store user info in the session cookie (client-side)
         session["user_info"] = {
             str("email"): email,
             str("phone"): phone,
+            str("os"): phone_os,
             str("age"): age,
             str("genre"): genre,
         }
