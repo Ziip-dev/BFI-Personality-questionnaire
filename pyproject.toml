@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "personality-bfi"
-version = "1.0.0"
+version = "1.0"
 description = "Big Five Inventory Personality test (French version) in a python web application"
 license = "AGPLv3"
 authors = ["Paul Dulaud <paul.dulaud@utt.fr>"]
