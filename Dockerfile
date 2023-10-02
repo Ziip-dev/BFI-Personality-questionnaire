@@ -12,7 +12,6 @@ ENV APP_DIR=/usr/src/app \
     PIP_NO_CACHE_DIR=off \
     PIP_DISABLE_PIP_VERSION_CHECK=on \
     PIP_DEFAULT_TIMEOUT=100 \
-    POETRY_VERSION=1.1.4 \
     POETRY_HOME="/opt/poetry" \
     POETRY_VIRTUALENVS_IN_PROJECT=true \
     POETRY_NO_INTERACTION=1 \
@@ -31,7 +30,8 @@ RUN apk -U upgrade \
     && apk add --no-cache curl
 
 # install poetry - respects $POETRY_VERSION & $POETRY_HOME
-RUN curl -sSL https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.py | python
+RUN curl -sSL https://install.python-poetry.org | python3 -
+
 
 # copy project requirement files here to ensure they will be cached.
 WORKDIR $PYSETUP_PATH
