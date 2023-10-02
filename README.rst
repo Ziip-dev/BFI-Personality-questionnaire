@@ -4,7 +4,7 @@ Big Five Personality Questionnaire (French version)
 
 
 This project is a comprehensive implementation of the Big Five Inventory (BFI) personality questionnaire (French version) in a minimal Flask web app.
-The BFI is a widely used psychological instrument that measures personality traits based on the Five-Factor Model (see `Big Five personality traits <https://en.wikipedia.org/wiki/Big_Five_personality_traits>`).
+The BFI is a widely used psychological instrument that measures personality traits based on the Five-Factor Model (see `Big Five personality traits <https://en.wikipedia.org/wiki/Big_Five_personality_traits>`_).
 
 According to the FFM, the five personality traits are:
 
