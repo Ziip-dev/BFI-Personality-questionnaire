@@ -43,7 +43,7 @@ Caprover PaaS
 
    ::
    
-       $ captain deploy
+       $ caprover deploy
 
 
 Native
